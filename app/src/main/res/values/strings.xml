@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Survey App</string>
+    <string name="are_you_excited">Are you excited for the Final Fantasy 7 Remake release?</string>
+    <string name="heck_yeah">Heck Yeah!</string>
+    <string name="nope">Nope</string>
+    <string name="yes_count">%1$d</string>
+    <string name="no_count">%1$d</string>
+    <string name="reset_count">Reset</string>
 </resources>
