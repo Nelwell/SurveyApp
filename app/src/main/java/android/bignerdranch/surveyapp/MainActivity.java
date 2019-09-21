@@ -2,12 +2,16 @@ package android.bignerdranch.surveyapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String EXTRA_YES_VOTES_COUNT = "android.bignerdranch.surveyapp.yes_vote_count";
+    public static final String EXTRA_NO_VOTES_COUNT = "android.bignerdranch.surveyapp.no_vote_count";
 
     // Keys strings for finding saved instance data
     private static final String KEY_INDEX_YES = "yes vote";
@@ -16,10 +20,11 @@ public class MainActivity extends AppCompatActivity {
     // Initialized widgets to be inflated
     Button mYesButton;
     Button mNoButton;
+    Button mResetVotesButton;
+    Button mResultsButton;
     TextView mSurveyQuestion;
     TextView mYesCount;
     TextView mNoCount;
-    Button mResetVotes;
 
     // Initialize variables for counting/resetting votes
     private int mVoteYesCount = 0;
@@ -34,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
         // Calls references to String resources
         mYesButton = findViewById(R.id.yes_button);
         mNoButton = findViewById(R.id.no_button);
+        mResultsButton = findViewById(R.id.results_button);
         mSurveyQuestion = findViewById(R.id.survey_question);
         mYesCount = findViewById(R.id.yes_count);
         mNoCount = findViewById(R.id.no_count);
-        mResetVotes = findViewById(R.id.reset_button);
+        mResetVotesButton = findViewById(R.id.reset_button);
 
         // Checks for saved instance variable data during rotation
         if (savedInstanceState != null) {
@@ -62,13 +68,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mResetVotes.setOnClickListener(new View.OnClickListener() {
+        mResetVotesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mYesCount.setText(String.valueOf(resetVotes));
                 mNoCount.setText(String.valueOf(resetVotes));
-                mVoteYesCount = 0; // sets counts back to 0
+                mVoteYesCount = 0; // Set counts back to 0
                 mVoteNoCount = 0;
+            }
+        });
+
+        mResultsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create intent and start ResultsActivity
+                Intent showResultsIntent = new Intent(MainActivity.this, ResultsActivity.class);
+                showResultsIntent.putExtra(EXTRA_YES_VOTES_COUNT, mVoteYesCount);
+                showResultsIntent.putExtra(EXTRA_NO_VOTES_COUNT, mVoteNoCount);
+                startActivity(showResultsIntent);
             }
         });
     }

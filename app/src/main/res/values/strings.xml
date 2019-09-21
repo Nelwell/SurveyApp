@@ -6,4 +6,10 @@
     <string name="yes_count">%1$d</string>
     <string name="no_count">%1$d</string>
     <string name="reset_count">Reset</string>
+    <string name="results_title">Results</string>
+    <string name="yes_votes_title">Yes Votes</string>
+    <string name="no_votes_title">No Votes</string>
+    <string name="reset_survey">Reset</string>
+    <string name="continue_survey">Continue Survey</string>
+    <string name="results_button">Results</string>
 </resources>
