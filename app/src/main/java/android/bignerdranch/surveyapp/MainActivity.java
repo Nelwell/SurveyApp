@@ -9,9 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static android.bignerdranch.surveyapp.ConfigureSurveyActivity.EXTRA_ANSWER_ONE;
-import static android.bignerdranch.surveyapp.ConfigureSurveyActivity.EXTRA_ANSWER_TWO;
-import static android.bignerdranch.surveyapp.ConfigureSurveyActivity.EXTRA_NEW_SURVEY_QUESTION;
+// Extras to be passed to ResultsActivity
 import static android.bignerdranch.surveyapp.ResultsActivity.EXTRA_NO_VOTES_COUNT;
 import static android.bignerdranch.surveyapp.ResultsActivity.EXTRA_YES_VOTES_COUNT;
 
@@ -143,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Checks received request code and result code
         if (requestCode == RESULTS_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            boolean tappedReset = data.getBooleanExtra(ResultsActivity.EXTRA_RESULT_BUTTON_PRESSED, false);
+            boolean tappedReset = data.getBooleanExtra(ResultsActivity.EXTRA_RESULT_BUTTON_PRESSED, true);
 
             // Determines if user reset votes or will continue survey
             if (tappedReset) {
@@ -152,12 +150,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Continue-eth thou survey-eth", Toast.LENGTH_LONG).show();
             }
-        }
-
-        // If back button is pressed
-        if (requestCode == RESULTS_ACTIVITY_REQUEST_CODE || requestCode == CONFIGURE_SURVEY_REQUEST_CODE
-                && resultCode == RESULT_CANCELED) {
-            Toast.makeText(this, "You pressed the back button", Toast.LENGTH_LONG).show();
         }
 
         // Checks received request code and result code
@@ -173,13 +165,13 @@ public class MainActivity extends AppCompatActivity {
             resetVotes(); // resets survey votes
             Toast.makeText(this, "Survey edits have been saved", Toast.LENGTH_LONG).show();
 
-//            if (editsSaved) {
-//                Toast.makeText(this, "Thank you", Toast.LENGTH_LONG).show();
-//            } else {
-//                Toast.makeText(this, ":(....", Toast.LENGTH_LONG).show();
-//            }
         }
 
+        // Checks if back button is pressed
+        if (requestCode == CONFIGURE_SURVEY_REQUEST_CODE && resultCode == RESULT_CANCELED ||
+                requestCode == RESULTS_ACTIVITY_REQUEST_CODE && resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "You pressed the back button", Toast.LENGTH_LONG).show();
+        }
     }
 }
 
