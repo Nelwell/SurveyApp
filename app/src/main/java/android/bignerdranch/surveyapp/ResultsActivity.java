@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 public class ResultsActivity extends AppCompatActivity {
 
-    // Constant key string ofr Result Activity
+    // Constant key string for ResultsActivity
     public static final String EXTRA_RESULT_BUTTON_PRESSED = "com.android.bignerdranch.surveyapp.result_button_pressed";
+    public static final String EXTRA_YES_VOTES_COUNT = "android.bignerdranch.surveyapp.yes_vote_count";
+    public static final String EXTRA_NO_VOTES_COUNT = "android.bignerdranch.surveyapp.no_vote_count";
 
     // Member instance variables
     private TextView mYesVoteCount;
@@ -23,8 +25,8 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
 
         // Stores values from extra in member variables
-        int yesVotes = getIntent().getIntExtra(MainActivity.EXTRA_YES_VOTES_COUNT, 0);
-        int noVotes = getIntent().getIntExtra(MainActivity.EXTRA_NO_VOTES_COUNT, 0);
+        int yesVotes = getIntent().getIntExtra(EXTRA_YES_VOTES_COUNT, 0);
+        int noVotes = getIntent().getIntExtra(EXTRA_NO_VOTES_COUNT, 0);
 
         // Get references to vote TextView string resources
         mYesVoteCount = findViewById(R.id.yes_vote_count);

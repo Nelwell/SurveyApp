@@ -9,10 +9,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import static android.bignerdranch.surveyapp.ConfigureSurveyActivity.EXTRA_ANSWER_ONE;
+import static android.bignerdranch.surveyapp.ConfigureSurveyActivity.EXTRA_ANSWER_TWO;
+import static android.bignerdranch.surveyapp.ConfigureSurveyActivity.EXTRA_NEW_SURVEY_QUESTION;
+import static android.bignerdranch.surveyapp.ResultsActivity.EXTRA_NO_VOTES_COUNT;
+import static android.bignerdranch.surveyapp.ResultsActivity.EXTRA_YES_VOTES_COUNT;
 
-    public static final String EXTRA_YES_VOTES_COUNT = "android.bignerdranch.surveyapp.yes_vote_count";
-    public static final String EXTRA_NO_VOTES_COUNT = "android.bignerdranch.surveyapp.no_vote_count";
+public class MainActivity extends AppCompatActivity {
 
     // Request codes for continue or reset ResultsActivity buttons
     private static final int RESULTS_ACTIVITY_REQUEST_CODE = 0;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     Button mNoButton;
     Button mResetVotesButton;
     Button mResultsButton;
+    Button mConfigureSurveyButton;
     TextView mSurveyQuestion;
     TextView mYesCount;
     TextView mNoCount;
@@ -44,11 +48,12 @@ public class MainActivity extends AppCompatActivity {
         // Calls references to String resources
         mYesButton = findViewById(R.id.yes_button);
         mNoButton = findViewById(R.id.no_button);
+        mResetVotesButton = findViewById(R.id.reset_button);
         mResultsButton = findViewById(R.id.results_button);
+        mConfigureSurveyButton = findViewById(R.id.configure_survey_button);
         mSurveyQuestion = findViewById(R.id.survey_question);
         mYesCount = findViewById(R.id.yes_count);
         mNoCount = findViewById(R.id.no_count);
-        mResetVotesButton = findViewById(R.id.reset_button);
 
         // Checks for saved instance variable data during rotation
         if (savedInstanceState != null) {
@@ -90,6 +95,16 @@ public class MainActivity extends AppCompatActivity {
                 showResultsIntent.putExtra(EXTRA_NO_VOTES_COUNT, mVoteNoCount);
                 // Sends intent and requests return of result code
                 startActivityForResult(showResultsIntent, RESULTS_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+        mConfigureSurveyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create intent and start ResultsActivity
+                Intent configureSurveyIntent = new Intent(MainActivity.this, ConfigureSurveyActivity.class);
+                // Sends intent and requests return of result code
+                startActivityForResult(configureSurveyIntent, CONFIGURE_SURVEY_REQUEST_CODE);
             }
         });
     }
@@ -140,20 +155,32 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // If back button is pressed
-        if (requestCode == RESULTS_ACTIVITY_REQUEST_CODE && resultCode == RESULT_CANCELED) {
+        if (requestCode == RESULTS_ACTIVITY_REQUEST_CODE || requestCode == CONFIGURE_SURVEY_REQUEST_CODE
+                && resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "You pressed the back button", Toast.LENGTH_LONG).show();
         }
 
         // Checks received request code and result code
-//        if (requestCode == CONFIGURE_SURVEY_REQUEST_CODE && resultCode == RESULT_OK) {
-//            boolean buttonTapped = data.getBooleanExtra(ReviewActivity.EXTRA_TAPPED_BUTTON, true);
-//
-//            if (buttonTapped) {
+        if (requestCode == CONFIGURE_SURVEY_REQUEST_CODE && resultCode == RESULT_OK) {
+//            boolean editsSaved = data.getBooleanExtra(ConfigureSurveyActivity.
+//                    EXTRA_SAVE_EDITS_BUTTON_PRESSED, true);
+            String newQuestion = data.getStringExtra(ConfigureSurveyActivity.EXTRA_NEW_SURVEY_QUESTION);
+            String answerOne = data.getStringExtra(ConfigureSurveyActivity.EXTRA_ANSWER_ONE);
+            String answerTwo = data.getStringExtra(ConfigureSurveyActivity.EXTRA_ANSWER_TWO);
+
+            // Set new question/answers to TextView and vote Buttons
+            mSurveyQuestion.setText(newQuestion);
+            mYesButton.setText(answerOne);
+            mNoButton.setText(answerTwo);
+            resetVotes(); // resets survey votes
+            Toast.makeText(this, "Survey edits have been saved", Toast.LENGTH_LONG).show();
+
+//            if (editsSaved) {
 //                Toast.makeText(this, "Thank you", Toast.LENGTH_LONG).show();
 //            } else {
 //                Toast.makeText(this, ":(....", Toast.LENGTH_LONG).show();
 //            }
-//        }
+        }
 
     }
 }
