@@ -162,8 +162,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Checks received request code and result code
         if (requestCode == CONFIGURE_SURVEY_REQUEST_CODE && resultCode == RESULT_OK) {
-//            boolean editsSaved = data.getBooleanExtra(ConfigureSurveyActivity.
-//                    EXTRA_SAVE_EDITS_BUTTON_PRESSED, true);
             String newQuestion = data.getStringExtra(ConfigureSurveyActivity.EXTRA_NEW_SURVEY_QUESTION);
             String answerOne = data.getStringExtra(ConfigureSurveyActivity.EXTRA_ANSWER_ONE);
             String answerTwo = data.getStringExtra(ConfigureSurveyActivity.EXTRA_ANSWER_TWO);

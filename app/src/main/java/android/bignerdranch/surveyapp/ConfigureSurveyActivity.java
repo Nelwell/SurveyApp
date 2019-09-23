@@ -40,9 +40,9 @@ public class ConfigureSurveyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Convert EditTexts to String values
-                String mNewSurveyQuestion = mEditSurveyQuestion.toString();
-                String mNewAnswerOne = mAnswerOne.toString();
-                String mNewAnswerTwo = mAnswerTwo.toString();
+                String mNewSurveyQuestion = mEditSurveyQuestion.getText().toString();
+                String mNewAnswerOne = mAnswerOne.getText().toString();
+                String mNewAnswerTwo = mAnswerTwo.getText().toString();
                 // Intent carries data back to Activity that launches this one
                 Intent returnIntent = new Intent();
                 // Add edited texts as extras
