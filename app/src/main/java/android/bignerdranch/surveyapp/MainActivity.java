@@ -56,10 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
 //        String mNewSurveyQuestion = mSurveyQuestion.getText().toString();
 
-//        String mNewSurveyQuestion = mSurveyQuestion.getText().toString();
-
-//        String mNewSurveyQuestion = mSurveyQuestion.getText().toString();
-
         // Checks for saved instance variable data during rotation
         if (savedInstanceState != null) {
             mVoteYesCount = savedInstanceState.getInt(KEY_INDEX_YES, mVoteYesCount);
