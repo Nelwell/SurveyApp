@@ -13,7 +13,7 @@
     <string name="continue_survey">Continue Survey</string>
     <string name="results_button">Results</string>
     <string name="save_edits">Save Edits</string>
-    <string name="configure_screen_title">Click objects to edit</string>
+    <string name="configure_screen_title">Tap in text fields to edit</string>
     <string name="survey_question_hint">Survey Question</string>
     <string name="answer_one_hint">Answer One</string>
     <string name="answer_two_hint">Answer Two</string>

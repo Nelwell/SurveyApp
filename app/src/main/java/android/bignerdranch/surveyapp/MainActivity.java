@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     // Keys strings for finding saved instance data
     private static final String KEY_INDEX_YES = "yes vote";
     private static final String KEY_INDEX_NO = "no vote";
+//    private static final String KEY_INDEX_QUESTION = "survey question";
 
     // Initialized widgets to be inflated
     Button mYesButton;
@@ -53,12 +54,21 @@ public class MainActivity extends AppCompatActivity {
         mYesCount = findViewById(R.id.yes_count);
         mNoCount = findViewById(R.id.no_count);
 
+//        String mNewSurveyQuestion = mSurveyQuestion.getText().toString();
+
+//        String mNewSurveyQuestion = mSurveyQuestion.getText().toString();
+
+//        String mNewSurveyQuestion = mSurveyQuestion.getText().toString();
+
         // Checks for saved instance variable data during rotation
         if (savedInstanceState != null) {
             mVoteYesCount = savedInstanceState.getInt(KEY_INDEX_YES, mVoteYesCount);
             mVoteNoCount = savedInstanceState.getInt(KEY_INDEX_NO, mVoteNoCount);
+//            mNewSurveyQuestion = savedInstanceState.getString(KEY_INDEX_QUESTION, mNewSurveyQuestion);
             mYesCount.setText(String.valueOf(mVoteYesCount));
             mNoCount.setText(String.valueOf(mVoteNoCount));
+//            mNewSurveyQuestion = mSurveyQuestion.getText().toString();
+//            mSurveyQuestion.setText(mNewSurveyQuestion);
         }
 
         // Button listeners
@@ -121,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outBundle);
         outBundle.putInt(KEY_INDEX_YES, mVoteYesCount);
         outBundle.putInt(KEY_INDEX_NO, mVoteNoCount);
+//        outBundle.putString(KEY_INDEX_QUESTION, mSurveyQuestion.getText().toString());
     }
 
     // Adds single vote per press to corresponding yes or no vote count
