@@ -22,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
     // Keys strings for finding saved instance data
     private static final String KEY_INDEX_YES = "yes vote";
     private static final String KEY_INDEX_NO = "no vote";
-//    private static final String KEY_INDEX_QUESTION = "survey question";
+    private static final String KEY_INDEX_QUESTION = "survey question";
+    private static final String KEY_INDEX_ANSWER_ONE = "new answer one";
+    private static final String KEY_INDEX_ANSWER_TWO = "new answer two";
 
     // Initialized widgets to be inflated
     Button mYesButton;
@@ -54,17 +56,23 @@ public class MainActivity extends AppCompatActivity {
         mYesCount = findViewById(R.id.yes_count);
         mNoCount = findViewById(R.id.no_count);
 
-//        String mNewSurveyQuestion = mSurveyQuestion.getText().toString();
+        // Convert TextViews/Button texts to strings
+        String mNewSurveyQuestion = mSurveyQuestion.getText().toString();
+        String mNewAnswerOne = mYesButton.getText().toString();
+        String mNewAnswerTwo = mNoButton.getText().toString();
 
         // Checks for saved instance variable data during rotation
         if (savedInstanceState != null) {
             mVoteYesCount = savedInstanceState.getInt(KEY_INDEX_YES, mVoteYesCount);
             mVoteNoCount = savedInstanceState.getInt(KEY_INDEX_NO, mVoteNoCount);
-//            mNewSurveyQuestion = savedInstanceState.getString(KEY_INDEX_QUESTION, mNewSurveyQuestion);
+            mNewSurveyQuestion = savedInstanceState.getString(KEY_INDEX_QUESTION, mNewSurveyQuestion);
+            mNewAnswerOne = savedInstanceState.getString(KEY_INDEX_ANSWER_ONE, mNewAnswerOne);
+            mNewAnswerTwo = savedInstanceState.getString(KEY_INDEX_ANSWER_TWO, mNewAnswerTwo);
             mYesCount.setText(String.valueOf(mVoteYesCount));
             mNoCount.setText(String.valueOf(mVoteNoCount));
-//            mNewSurveyQuestion = mSurveyQuestion.getText().toString();
-//            mSurveyQuestion.setText(mNewSurveyQuestion);
+            mSurveyQuestion.setText(mNewSurveyQuestion);
+            mYesButton.setText(mNewAnswerOne);
+            mNoButton.setText(mNewAnswerTwo);
         }
 
         // Button listeners
@@ -127,7 +135,9 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outBundle);
         outBundle.putInt(KEY_INDEX_YES, mVoteYesCount);
         outBundle.putInt(KEY_INDEX_NO, mVoteNoCount);
-//        outBundle.putString(KEY_INDEX_QUESTION, mSurveyQuestion.getText().toString());
+        outBundle.putString(KEY_INDEX_QUESTION, mSurveyQuestion.getText().toString());
+        outBundle.putString(KEY_INDEX_ANSWER_ONE, mYesButton.getText().toString());
+        outBundle.putString(KEY_INDEX_ANSWER_TWO, mNoButton.getText().toString());
     }
 
     // Adds single vote per press to corresponding yes or no vote count
