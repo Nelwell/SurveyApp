@@ -2,20 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_results"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultsActivity">
+    android:background="#DAC979"
+    tools:context=".ResultsFragment">
 
     <TextView
         android:id="@+id/yes_vote_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="2dp"
-        android:textColor="#000000"
+        android:text="0"
+        android:textColor="#50460F"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/no_vote_count"
-        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yes_votes_title" />
 
@@ -24,7 +27,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="9dp"
-        android:textColor="#000000"
+        android:text="0"
+        android:textColor="#4B4211"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/yes_vote_count"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,24 +41,24 @@
         android:id="@+id/results_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="@string/results_title"
         android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#3F51B5"
-        android:textSize="30sp"
+        android:textAllCaps="false"
+        android:textColor="#4D4415"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/reset_survey_button" />
 
     <TextView
         android:id="@+id/yes_votes_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="66dp"
         android:text="@string/yes_votes_title"
+        android:textColor="#4B4215"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/no_votes_title"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +71,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="35dp"
         android:text="@string/no_votes_title"
+        android:textColor="#4B4215"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/no_vote_count"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,23 +81,15 @@
         android:id="@+id/reset_survey_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="#FFFFFF"
         android:text="@string/reset_survey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/continue_survey_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/continue_survey"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAllCaps="false"
+        android:textColor="#3C3411"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yes_vote_count"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintStart_toEndOf="@+id/results_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
