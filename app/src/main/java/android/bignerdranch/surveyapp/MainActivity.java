@@ -38,7 +38,6 @@ public abstract class MainActivity extends AppCompatActivity implements View.OnC
 //    Button mYesButton;
 //    Button mNoButton;
 //    Button mResetVotesButton;
-//    Button mResultsButton;
     Button mEditSurveyButton;
 //    TextView mSurveyQuestion;
 //    TextView mYesCount;
