@@ -15,7 +15,7 @@ import android.widget.Toast;
 //import static android.bignerdranch.surveyapp.ResultsActivity.EXTRA_NO_VOTES_COUNT;
 //import static android.bignerdranch.surveyapp.ResultsActivity.EXTRA_YES_VOTES_COUNT;
 
-public abstract class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG_CONFIG_FRAG = "CONFIG FRAGMENT";
 
@@ -55,8 +55,8 @@ public abstract class MainActivity extends AppCompatActivity implements View.OnC
 
         // Create three fragments
         mSurveyQuestionFragment = new SurveyQuestionFragment();
-        mConfigureSurveyFragment = new ConfigureSurveyFragment();
         mResultsFragment = new ResultsFragment();
+        mConfigureSurveyFragment = new ConfigureSurveyFragment();
 
         // Show two of the fragments
         FragmentManager fm = getSupportFragmentManager();
@@ -64,18 +64,6 @@ public abstract class MainActivity extends AppCompatActivity implements View.OnC
         ft.add(R.id.results_fragment_container, mResultsFragment);
         ft.add(R.id.survey_question_fragment_container, mSurveyQuestionFragment);
         ft.commit();
-
-        mEditSurveyButton = findViewById(R.id.edit_survey_button);
-        mEditSurveyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editSurvey();
-            }
-//            @Override
-//            public void onClick(View view) {
-//                editSurvey();
-//            }
-        });
 
 //        // Calls references to String resources
 //        mYesButton = findViewById(R.id.yes_button);
@@ -229,7 +217,7 @@ public abstract class MainActivity extends AppCompatActivity implements View.OnC
 
         // Create new ToDoItemDetailFragment with the selected ToDoItem
 //        ConfigureSurveyFragment configureSurveyFragment = ConfigureSurveyFragment.newInstance();
-        ft.replace(android.R.id.content, mConfigureSurveyFragment, TAG_CONFIG_FRAG);
+        ft.replace(R.id.results_fragment_container, mConfigureSurveyFragment);
 
         // Add to the back stack, so if user presses back button from the DetailFragment,
         // it will revert this transaction - Activity will remove the DetailFragment, showing the Add+List fragments
