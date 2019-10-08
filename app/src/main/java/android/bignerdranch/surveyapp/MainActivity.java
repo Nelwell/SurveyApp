@@ -15,7 +15,7 @@ import android.widget.Toast;
 //import static android.bignerdranch.surveyapp.ResultsActivity.EXTRA_NO_VOTES_COUNT;
 //import static android.bignerdranch.surveyapp.ResultsActivity.EXTRA_YES_VOTES_COUNT;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SurveyQuestionFragment.EditSurveyListener {
 
     private static final String TAG_CONFIG_FRAG = "CONFIG FRAGMENT";
 
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
 //    }
     }
 
-    private void editSurvey() {
+    public void editSurvey() {
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 

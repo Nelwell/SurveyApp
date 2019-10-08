@@ -1,8 +1,10 @@
 package android.bignerdranch.surveyapp;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -20,13 +22,29 @@ import static android.content.ContentValues.TAG;
  */
 public class SurveyQuestionFragment extends Fragment {
 
-    private Button mEditSurveyButton;
-
-
-    public SurveyQuestionFragment() {
-        // Required empty public constructor
+    public interface EditSurveyListener {
+        void editSurvey();
     }
 
+    private EditSurveyListener mEditSurveyListener;
+
+//    public SurveyQuestionFragment() {
+//        // Required empty public constructor
+//    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        Log.d(TAG, "onAttach");
+
+        if (context instanceof EditSurveyListener){    // Context is the hosting Activity.
+            mEditSurveyListener = (EditSurveyListener) context;
+            Log.d(TAG, "Listener set");
+        } else  {
+            throw new RuntimeException(context.toString() + " must implement NewItemCreatedListener");
+        }
+    }
 
 
     @Override
@@ -35,11 +53,15 @@ public class SurveyQuestionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_survey_question, container, false);
 
-        mEditSurveyButton = view.findViewById(R.id.edit_survey_button);
+        Button mEditSurveyButton = view.findViewById(R.id.edit_survey_button);
         mEditSurveyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editSurvey();
+//                editSurvey();
+
+
+            // Call listener's newItemCreated method to notify it that a newItem was created
+				mEditSurveyListener.editSurvey();
             }
         });
         return view;
