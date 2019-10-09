@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 //import static android.bignerdranch.surveyapp.ResultsActivity.EXTRA_NO_VOTES_COUNT;
 //import static android.bignerdranch.surveyapp.ResultsActivity.EXTRA_YES_VOTES_COUNT;
 
-public class MainActivity extends AppCompatActivity implements SurveyQuestionFragment.EditSurveyListener {
+public class MainActivity extends AppCompatActivity implements
+        SurveyQuestionFragment.EditSurveyButtonListener,
+        ConfigureSurveyFragment.EditSurveyListener {
 
     private static final String TAG_CONFIG_FRAG = "CONFIG FRAGMENT";
 
@@ -34,12 +37,12 @@ public class MainActivity extends AppCompatActivity implements SurveyQuestionFra
 //    private static final String KEY_INDEX_ANSWER_ONE = "new answer one";
 //    private static final String KEY_INDEX_ANSWER_TWO = "new answer two";
 
-//    // Initialized widgets to be inflated
+    // Initialized widgets to be inflated
 //    Button mYesButton;
 //    Button mNoButton;
 //    Button mResetVotesButton;
     Button mEditSurveyButton;
-//    TextView mSurveyQuestion;
+    TextView mSurveyQuestion;
 //    TextView mYesCount;
 //    TextView mNoCount;
 
@@ -211,13 +214,47 @@ public class MainActivity extends AppCompatActivity implements SurveyQuestionFra
 //    }
     }
 
-    public void editSurvey() {
+    public void editSurveyButtonPressed() {
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
         // Create new ToDoItemDetailFragment with the selected ToDoItem
 //        ConfigureSurveyFragment configureSurveyFragment = ConfigureSurveyFragment.newInstance();
         ft.replace(R.id.results_fragment_container, mConfigureSurveyFragment);
+
+        // Add to the back stack, so if user presses back button from the DetailFragment,
+        // it will revert this transaction - Activity will remove the DetailFragment, showing the Add+List fragments
+        ft.addToBackStack(TAG_CONFIG_FRAG);
+
+        ft.commit();
+    }
+
+    public void editSurvey(SurveyData newSurvey) {
+
+
+//        mSurveyQuestion.getText().toString(newSurvey);
+
+
+//        mTodoItems.add(newItem);
+
+//        // Add item to the ArrayList
+//        Log.d(TAG, "Notified that this new item was created: " + mTodoItems);
+//
+//        // Get reference to List Fragment from the FragmentManager, tell this Fragment that the date has changed
+//        FragmentManager fm = getSupportFragmentManager();
+//        ToDoListFragment listFragment = (ToDoListFragment) fm.findFragmentByTag(TAG_LIST_FRAG);
+//        listFragment.notifyItemsChanged();
+//
+//        hideKeyboard();
+
+//    }
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        // Create new ToDoItemDetailFragment with the selected ToDoItem
+//        ConfigureSurveyFragment configureSurveyFragment = ConfigureSurveyFragment.newInstance();
+//        ft.replace(R.id.results_fragment_container, mConfigureSurveyFragment);
+
 
         // Add to the back stack, so if user presses back button from the DetailFragment,
         // it will revert this transaction - Activity will remove the DetailFragment, showing the Add+List fragments

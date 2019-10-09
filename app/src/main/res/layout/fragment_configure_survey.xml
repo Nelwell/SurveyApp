@@ -11,7 +11,7 @@
     android:focusable="true">
 
 <Button
-        android:id="@+id/save_edits"
+        android:id="@+id/save_edits_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -67,6 +67,7 @@
         android:textColor="#101C5F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/answer_two"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
