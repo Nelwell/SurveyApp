@@ -20,15 +20,28 @@ import static android.content.ContentValues.TAG;
  */
 public class SurveyQuestionFragment extends Fragment {
 
-        public interface EditSurveyButtonListener {
+    private int mAnswerOneCount = 0;
+    private int mAnswerTwoCount = 0;
+
+    interface ResultsListener {
+        void surveyResults(int yes, int no);
+    }
+
+    interface EditSurveyButtonListener {
         void editSurveyButtonPressed();
     }
 
     private EditSurveyButtonListener mEditSurveyButtonListener;
 
-//    public SurveyQuestionFragment() {
-//        // Required empty public constructor
-//    }
+    private ResultsListener mResultsListener;
+
+    public SurveyQuestionFragment() {
+        // Required empty public constructor
+    }
+
+    public static SurveyQuestionFragment newInstance() {
+        return new SurveyQuestionFragment();
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -36,11 +49,19 @@ public class SurveyQuestionFragment extends Fragment {
 
         Log.d(TAG, "onAttach");
 
-        if (context instanceof EditSurveyButtonListener){    // Context is the hosting Activity.
+        if (context instanceof ResultsListener){  // Context is the hosting Activity.
+            mResultsListener = (ResultsListener) context;
+            Log.d(TAG, "Listener set");
+        } else  {
+            throw new RuntimeException(context.toString() + " must implement ResultsListener");
+        }
+
+        // Verifies it's a listener
+        if (context instanceof EditSurveyButtonListener){  // Context is the hosting Activity.
             mEditSurveyButtonListener = (EditSurveyButtonListener) context;
             Log.d(TAG, "Listener set");
         } else  {
-            throw new RuntimeException(context.toString() + " must implement NewItemCreatedListener");
+            throw new RuntimeException(context.toString() + " must implement EditSurveyButtonListener");
         }
     }
 
@@ -51,8 +72,28 @@ public class SurveyQuestionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_survey_question, container, false);
 
-
+        // Get button IDs
+        Button mAnswerOneButton = view.findViewById(R.id.answer_one_button);
+        Button mAnswerTwoButton = view.findViewById(R.id.answer_two_button);
         Button mEditSurveyButton = view.findViewById(R.id.edit_survey_button);
+
+        mAnswerOneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("SURVEY", "First answer " + mAnswerOneCount);
+                mAnswerOneCount++; // Adds one vote per click
+                mResultsListener.surveyResults(mAnswerOneCount, mAnswerTwoCount);
+            }
+        });
+
+        mAnswerTwoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("SURVEY", "Second answer " + mAnswerTwoCount);
+                mAnswerTwoCount++; // Adds one vote per click
+                mResultsListener.surveyResults(mAnswerOneCount, mAnswerTwoCount);
+            }
+        });
 
         mEditSurveyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +109,7 @@ public class SurveyQuestionFragment extends Fragment {
             mEditSurveyButtonListener.editSurveyButtonPressed();
             }
         });
-        return view;
 
+        return view;
     }
 }

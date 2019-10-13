@@ -9,12 +9,14 @@
     <string name="results_title">Current Survey Results</string>
     <string name="yes_votes_title">Yes Votes</string>
     <string name="no_votes_title">No Votes</string>
-    <string name="reset_survey">Reset</string>
+    <string name="reset_survey_button">Reset</string>
     <string name="save_edits">Save Edits</string>
     <string name="configure_screen_title">Tap in text fields to edit</string>
     <string name="survey_question_hint">Survey Question</string>
     <string name="answer_one_hint">Answer One</string>
     <string name="answer_two_hint">Answer Two</string>
     <string name="edit_survey_button">Edit Survey</string>
+    <string name="empty_yes_count">0</string>
+    <string name="empty_no_count">0</string>
 
 </resources>

@@ -39,7 +39,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/no_button"
+        android:id="@+id/answer_one_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="#FFFFFF"
+        android:padding="3dp"
+        android:text="@string/heck_yeah"
+        android:textAllCaps="false"
+        android:textColor="#3E0B86"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/answer_two_button"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/answer_two_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -53,19 +68,6 @@
         app:layout_constraintBottom_toTopOf="@+id/edit_survey_button"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/yes_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        android:background="#FFFFFF"
-        android:padding="3dp"
-        android:text="@string/heck_yeah"
-        android:textAllCaps="false"
-        android:textColor="#3E0B86"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/no_button"
-        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
