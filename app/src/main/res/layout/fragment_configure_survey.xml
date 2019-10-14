@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8F9DC4"
-    tools:context=".ConfigureSurveyFragment"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    tools:context=".ConfigureSurveyFragment">
 
-<Button
+    <Button
         android:id="@+id/save_edits_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         android:id="@+id/configure_screen_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="98dp"
         android:text="@string/configure_screen_title"
         android:textColor="#0E1A5E"
@@ -39,48 +39,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <EditText
         android:id="@+id/survey_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="152dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/survey_question_hint"
         android:inputType="textPersonName"
         android:textColor="#111D61"
-        app:layout_constraintBottom_toTopOf="@+id/answer_one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/configure_screen_title" />
 
     <EditText
         android:id="@+id/answer_one"
-        android:layout_width="106dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginEnd="84dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="@string/answer_one_hint"
         android:inputType="textPersonName"
         android:textColor="#101C5F"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/answer_two"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/answer_two"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/answer_two"
-        android:layout_width="106dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:hint="@string/answer_two_hint"
         android:inputType="textPersonName"
         android:textColor="#142169"
-        app:layout_constraintBottom_toBottomOf="@+id/answer_one"
+        app:layout_constraintBottom_toTopOf="@+id/save_edits_button"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

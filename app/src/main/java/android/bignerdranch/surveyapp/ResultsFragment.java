@@ -21,38 +21,53 @@ import static android.content.ContentValues.TAG;
  */
 public class ResultsFragment extends Fragment {
 
-    interface ResetListener {
-        void resetSurvey(int yes, int no);
-    }
-
-    private ResetListener mResetListener;
-
-    private static final String ARG_YES_COUNT = "arg_yes";
-    private static final String ARG_NO_COUNT = "arg_no";
-
     private int mAnswerOneCount;
     private int mAnswerTwoCount;
+    private String mQuestion;
+    private String mAnswerOne;
+    private String mAnswerTwo;
+
+    interface ResetResultsListener {
+        void resetResults(int mAnswerOneCount, int mAnswerTwoCount);
+    }
+
+    private ResetResultsListener mResetResultsListener;
+
+    interface ResetSurveyListener {
+        void resetSurvey();
+    }
+
+    private ResetSurveyListener mResetSurveyListener;
+
+    private static final String ARG_ANSWER_ONE_COUNT = "arg_answer_one";
+    private static final String ARG_ANSWER_TWO_COUNT = "arg_answer_two";
+//    private static final String ARG_NEW_QUESTION = "arg_question";
+//    private static final String ARG_ANSWER_ONE = "arg_answer_one";
+//    private static final String ARG_ANSWER_TWO = "arg_answer_two";
+
 
     public ResultsFragment() {
         // Required empty public constructor
     }
 
-    public static ResultsFragment newInstance(int yes, int no) {
+    public static ResultsFragment newInstance(int mAnswerOneCount, int mAnswerTwoCount) {
         ResultsFragment fragment = new ResultsFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_YES_COUNT, yes);
-        args.putInt(ARG_NO_COUNT, no);
+        args.putInt(ARG_ANSWER_ONE_COUNT, mAnswerOneCount);
+        args.putInt(ARG_ANSWER_TWO_COUNT, mAnswerTwoCount);
         fragment.setArguments(args);
         return fragment;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mAnswerOneCount = getArguments().getInt(ARG_YES_COUNT);
-            mAnswerTwoCount = getArguments().getInt(ARG_NO_COUNT);
+            mAnswerOneCount = getArguments().getInt(ARG_ANSWER_ONE_COUNT);
+            mAnswerTwoCount = getArguments().getInt(ARG_ANSWER_TWO_COUNT);
+//            mQuestion = getArguments().getString(ARG_NEW_QUESTION);
+//            mAnswerOne = getArguments().getString(ARG_ANSWER_ONE);
+//            mAnswerTwo = getArguments().getString(ARG_ANSWER_TWO);
         }
     }
 
@@ -62,8 +77,15 @@ public class ResultsFragment extends Fragment {
 
         Log.d(TAG, "onAttach");
 
-        if (context instanceof ResultsFragment.ResetListener){  // Context is the hosting Activity.
-            mResetListener = (ResultsFragment.ResetListener) context;
+        if (context instanceof ResultsFragment.ResetResultsListener){  // Context is the hosting Activity.
+            mResetResultsListener = (ResultsFragment.ResetResultsListener) context;
+            Log.d(TAG, "Listener set");
+        } else  {
+            throw new RuntimeException(context.toString() + " must implement ResetListener");
+        }
+
+        if (context instanceof ResultsFragment.ResetSurveyListener){  // Context is the hosting Activity.
+            mResetSurveyListener = (ResultsFragment.ResetSurveyListener) context;
             Log.d(TAG, "Listener set");
         } else  {
             throw new RuntimeException(context.toString() + " must implement ResetListener");
@@ -74,16 +96,16 @@ public class ResultsFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment and set new vote count value to TextViews
         View view = inflater.inflate(R.layout.fragment_results, container, false);
-        final TextView answerOneView = view.findViewById(R.id.yes_vote_count);
-        answerOneView.setText(""+mAnswerOneCount);
+        final TextView mAnswerOne = view.findViewById(R.id.yes_vote_count);
+        mAnswerOne.setText(""+mAnswerOneCount);
 
-        final TextView answerTwoView = view.findViewById(R.id.no_vote_count);
-        answerTwoView.setText(""+mAnswerTwoCount);
+        final TextView mAnswerTwo = view.findViewById(R.id.no_vote_count);
+        mAnswerTwo.setText(""+mAnswerTwoCount);
 
-        Button resetSurvey = view.findViewById(R.id.reset_survey_button);
-        resetSurvey.setOnClickListener(new View.OnClickListener() {
+        Button mResetSurvey = view.findViewById(R.id.reset_survey_button);
+        mResetSurvey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -98,7 +120,8 @@ public class ResultsFragment extends Fragment {
 
                 TextView answerTwoView = view.findViewById(R.id.no_vote_count);
                 answerTwoView.setText(""+mAnswerTwoCount);
-                mResetListener.resetSurvey(mAnswerOneCount, mAnswerTwoCount);
+                mResetResultsListener.resetResults(mAnswerOneCount, mAnswerTwoCount);
+                mResetSurveyListener.resetSurvey();
             }
         });
 

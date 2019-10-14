@@ -18,5 +18,6 @@
     <string name="edit_survey_button">Edit Survey</string>
     <string name="empty_yes_count">0</string>
     <string name="empty_no_count">0</string>
+    <string name="get_survey_edits">Set Survey Edits</string>
 
 </resources>
