@@ -30,12 +30,6 @@ public class ResultsFragment extends Fragment {
 
     private ResetResultsListener mResetResultsListener;
 
-    interface ResetSurveyListener {
-        void resetSurvey();
-    }
-
-    private ResetSurveyListener mResetSurveyListener;
-
     private static final String ARG_ANSWER_ONE_COUNT = "arg_answer_one";
     private static final String ARG_ANSWER_TWO_COUNT = "arg_answer_two";
 
@@ -74,13 +68,6 @@ public class ResultsFragment extends Fragment {
         } else  {
             throw new RuntimeException(context.toString() + " must implement mResetResultsListener");
         }
-
-        if (context instanceof ResultsFragment.ResetSurveyListener){  // Context is the hosting Activity.
-            mResetSurveyListener = (ResultsFragment.ResetSurveyListener) context;
-            Log.d(TAG, "Listener set");
-        } else  {
-            throw new RuntimeException(context.toString() + " must implement mResetSurveyListener");
-        }
     }
 
     @Override
@@ -90,10 +77,10 @@ public class ResultsFragment extends Fragment {
         // Inflate the layout for this fragment and set new vote count value to TextViews
         View view = inflater.inflate(R.layout.fragment_results, container, false);
         final TextView mAnswerOne = view.findViewById(R.id.yes_vote_count);
-        mAnswerOne.setText(""+mAnswerOneCount);
+        mAnswerOne.setText(String.valueOf(mAnswerOneCount));
 
         final TextView mAnswerTwo = view.findViewById(R.id.no_vote_count);
-        mAnswerTwo.setText(""+mAnswerTwoCount);
+        mAnswerTwo.setText(String.valueOf(mAnswerTwoCount));
 
         Button mResetSurvey = view.findViewById(R.id.reset_survey_button);
         mResetSurvey.setOnClickListener(new View.OnClickListener() {
@@ -106,13 +93,13 @@ public class ResultsFragment extends Fragment {
 
                 // Inflate the layout and reset counts
                 view = inflater.inflate(R.layout.fragment_results, container, false);
+
                 TextView answerOneView = view.findViewById(R.id.yes_vote_count);
-                answerOneView.setText(""+mAnswerOneCount);
+                answerOneView.setText(String.valueOf(mAnswerOneCount));
 
                 TextView answerTwoView = view.findViewById(R.id.no_vote_count);
-                answerTwoView.setText(""+mAnswerTwoCount);
+                answerTwoView.setText(String.valueOf(mAnswerTwoCount));
                 mResetResultsListener.resetResults(mAnswerOneCount, mAnswerTwoCount);
-                mResetSurveyListener.resetSurvey();
             }
         });
 

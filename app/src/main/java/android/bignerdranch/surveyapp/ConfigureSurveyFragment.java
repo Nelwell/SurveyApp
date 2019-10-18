@@ -25,21 +25,11 @@ public class ConfigureSurveyFragment extends Fragment {
     private String mAnswerOne;
     private String mAnswerTwo;
 
-//    interface EditSurveyListener {
-//        void editSurvey();
-//    }
-//
-//    private EditSurveyListener mEditSurveyListener;
-
     interface NewSurveyListener {
         void saveEdits(String mQuestion, String mAnswerOne, String mAnswerTwo);
     }
 
     private NewSurveyListener mNewSurveyListener;
-
-    private static final String ARG_NEW_QUESTION = "arg_question";
-    private static final String ARG_ANSWER_ONE = "arg_answer_one";
-    private static final String ARG_ANSWER_TWO = "arg_answer_two";
 
     public ConfigureSurveyFragment() {
         // Required empty public constructor
@@ -49,38 +39,11 @@ public class ConfigureSurveyFragment extends Fragment {
         return new ConfigureSurveyFragment();
     }
 
-//    public static ConfigureSurveyFragment newInstance(String mQuestion, String mAnswerOne, String mAnswerTwo) {
-//        ConfigureSurveyFragment fragment = new ConfigureSurveyFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_NEW_QUESTION, mQuestion);
-//        args.putString(ARG_ANSWER_ONE, mAnswerOne);
-//        args.putString(ARG_ANSWER_TWO, mAnswerTwo);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mQuestion = getArguments().getString(ARG_NEW_QUESTION);
-//            mAnswerOne = getArguments().getString(ARG_ANSWER_ONE);
-//            mAnswerTwo = getArguments().getString(ARG_ANSWER_TWO);
-//        }
-//    }
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         Log.d(TAG, "onAttach");
-
-//        if (context instanceof EditSurveyListener){    // Context is the hosting Activity.
-//            mEditSurveyListener = (EditSurveyListener) context;
-//            Log.d(TAG, "Listener set");
-//        } else  {
-//            throw new RuntimeException(context.toString() + " must implement EditSurveyListener");
-//        }
 
         if (context instanceof NewSurveyListener){    // Context is the hosting Activity.
             mNewSurveyListener = (NewSurveyListener) context;
@@ -114,12 +77,16 @@ public class ConfigureSurveyFragment extends Fragment {
                 mAnswerOne = newAnswerOne.getText().toString();
                 mAnswerTwo = newAnswerTwo.getText().toString();
 
-//                newQuestion.getText().clear();
-//                newAnswerOne.getText().clear();
-//                newAnswerTwo.getText().clear();
+                Log.d(TAG, "Save edits clicked... " + mQuestion + " " + mAnswerOne + " " + mAnswerTwo);
 
                 // Call listener's saveEdits method to notify it that new data has been created
                 mNewSurveyListener.saveEdits(mQuestion, mAnswerOne, mAnswerTwo);
+
+
+                // Clear fields
+                newQuestion.getText().clear();
+                newAnswerOne.getText().clear();
+                newAnswerTwo.getText().clear();
             }
         });
 
