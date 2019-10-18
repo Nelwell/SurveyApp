@@ -23,9 +23,6 @@ public class ResultsFragment extends Fragment {
 
     private int mAnswerOneCount;
     private int mAnswerTwoCount;
-    private String mQuestion;
-    private String mAnswerOne;
-    private String mAnswerTwo;
 
     interface ResetResultsListener {
         void resetResults(int mAnswerOneCount, int mAnswerTwoCount);
@@ -41,9 +38,6 @@ public class ResultsFragment extends Fragment {
 
     private static final String ARG_ANSWER_ONE_COUNT = "arg_answer_one";
     private static final String ARG_ANSWER_TWO_COUNT = "arg_answer_two";
-//    private static final String ARG_NEW_QUESTION = "arg_question";
-//    private static final String ARG_ANSWER_ONE = "arg_answer_one";
-//    private static final String ARG_ANSWER_TWO = "arg_answer_two";
 
 
     public ResultsFragment() {
@@ -65,9 +59,6 @@ public class ResultsFragment extends Fragment {
         if (getArguments() != null) {
             mAnswerOneCount = getArguments().getInt(ARG_ANSWER_ONE_COUNT);
             mAnswerTwoCount = getArguments().getInt(ARG_ANSWER_TWO_COUNT);
-//            mQuestion = getArguments().getString(ARG_NEW_QUESTION);
-//            mAnswerOne = getArguments().getString(ARG_ANSWER_ONE);
-//            mAnswerTwo = getArguments().getString(ARG_ANSWER_TWO);
         }
     }
 
@@ -81,14 +72,14 @@ public class ResultsFragment extends Fragment {
             mResetResultsListener = (ResultsFragment.ResetResultsListener) context;
             Log.d(TAG, "Listener set");
         } else  {
-            throw new RuntimeException(context.toString() + " must implement ResetListener");
+            throw new RuntimeException(context.toString() + " must implement mResetResultsListener");
         }
 
         if (context instanceof ResultsFragment.ResetSurveyListener){  // Context is the hosting Activity.
             mResetSurveyListener = (ResultsFragment.ResetSurveyListener) context;
             Log.d(TAG, "Listener set");
         } else  {
-            throw new RuntimeException(context.toString() + " must implement ResetListener");
+            throw new RuntimeException(context.toString() + " must implement mResetSurveyListener");
         }
     }
 

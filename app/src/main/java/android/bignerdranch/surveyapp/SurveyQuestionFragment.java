@@ -24,9 +24,6 @@ public class SurveyQuestionFragment extends Fragment {
 
     private int mAnswerOneCount = 0;
     private int mAnswerTwoCount = 0;
-    private String mQuestion;
-    private String mAnswerOne;
-    private String mAnswerTwo;
 
     private static final String ARG_NEW_QUESTION = "arg_question";
     private static final String ARG_ANSWER_ONE = "arg_answer_one";
@@ -44,11 +41,12 @@ public class SurveyQuestionFragment extends Fragment {
     }
     private EditSurveyButtonListener mEditSurveyButtonListener;
 
-    interface SetEditsListener {
-        void setEditsButtonPressed(String mQuestion, String mAnswerOne, String mAnswerTwo);
-
-    }
-    private SetEditsListener mSetEditsListener;
+//    interface SetEditsListener {
+//        void setEditsButtonPressed(String mQuestion, String mAnswerOne, String mAnswerTwo);
+//
+//    }
+//
+//    private SetEditsListener mSetEditsListener;
 
 
     public SurveyQuestionFragment() {
@@ -100,12 +98,12 @@ public class SurveyQuestionFragment extends Fragment {
             throw new RuntimeException(context.toString() + " must implement EditSurveyButtonListener");
         }
 
-        if (context instanceof SetEditsListener){  // Context is the hosting Activity.
-            mSetEditsListener = (SetEditsListener) context;
-            Log.d(TAG, "Listener set");
-        } else  {
-            throw new RuntimeException(context.toString() + " must implement SetEditsListener");
-        }
+//        if (context instanceof SetEditsListener){  // Context is the hosting Activity.
+//            mSetEditsListener = (SetEditsListener) context;
+//            Log.d(TAG, "Listener set");
+//        } else  {
+//            throw new RuntimeException(context.toString() + " must implement SetEditsListener");
+//        }
     }
 
     @Override
@@ -115,46 +113,53 @@ public class SurveyQuestionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_survey_question, container, false);
 
+//        if (getArguments() !=null && getArguments().getString(ARG_NEW_QUESTION) != null) {
+//
+//            final String mQuestion = getArguments().getString(ARG_NEW_QUESTION);
+//            final String mAnswerOne = getArguments().getString(ARG_ANSWER_ONE);
+//            Log.d(TAG, "onCreateView received the following item: " + mQuestion);
+
         final TextView mSurveyQuestion = view.findViewById(R.id.survey_question);
-//        mSurveyQuestion.setText(""+mQuestion);
+//        mSurveyQuestion.setText("");
 
         // Get button IDs and TextView String resource ID
         final Button mAnswerOneButton = view.findViewById(R.id.answer_one_button);
-//        mAnswerOneButton.setText(""+mAnswerOne);
+//        mAnswerOneButton.setText("");
 
         final Button mAnswerTwoButton = view.findViewById(R.id.answer_two_button);
 //        mAnswerTwoButton.setText(""+mAnswerTwo);
 
         Button mEditSurveyButton = view.findViewById(R.id.edit_survey_button);
-        Button mSetSurveyEditsButton = view.findViewById(R.id.get_survey_edits);
 
-        mSetSurveyEditsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+//        Button mSetSurveyEditsButton = view.findViewById(R.id.get_survey_edits);
 
-                // Inflate the layout for this fragment
-                view = inflater.inflate(R.layout.fragment_survey_question, container, false);
-
-                mQuestion = mSurveyQuestion.getText().toString();
-                mAnswerOne = mAnswerOneButton.getText().toString();
-                mAnswerTwo = mAnswerTwoButton.getText().toString();
-
-//                mSurveyQuestion.setText(""+mQuestion);
-//                mAnswerOneButton.setText(""+mAnswerOne);
-//                mAnswerTwoButton.setText(""+mAnswerTwo);
-
-                TextView newQuestion = view.findViewById(R.id.survey_question);
-                newQuestion.setText(""+mQuestion);
-
-                TextView newAnswerOne = view.findViewById(R.id.answer_one_button);
-                newAnswerOne.setText(""+mQuestion);
-
-                TextView newAnswerTwo = view.findViewById(R.id.answer_two_button);
-                newAnswerTwo.setText(""+mQuestion);
-
-                mSetEditsListener.setEditsButtonPressed(mQuestion, mAnswerOne, mAnswerTwo);
-            }
-        });
+//        mSetSurveyEditsButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                // Inflate the layout for this fragment
+//                view = inflater.inflate(R.layout.fragment_survey_question, container, false);
+//
+//                mQuestion = mSurveyQuestion.getText().toString();
+//                mAnswerOne = mAnswerOneButton.getText().toString();
+//                mAnswerTwo = mAnswerTwoButton.getText().toString();
+//
+////                mSurveyQuestion.setText(""+mQuestion);
+////                mAnswerOneButton.setText(""+mAnswerOne);
+////                mAnswerTwoButton.setText(""+mAnswerTwo);
+////
+////                TextView newQuestion = view.findViewById(R.id.survey_question);
+////                newQuestion.setText(""+mQuestion);
+////
+////                TextView newAnswerOne = view.findViewById(R.id.answer_one_button);
+////                newAnswerOne.setText(""+mQuestion);
+////
+////                TextView newAnswerTwo = view.findViewById(R.id.answer_two_button);
+////                newAnswerTwo.setText(""+mQuestion);
+//
+//                mSetEditsListener.setEditsButtonPressed(mQuestion, mAnswerOne, mAnswerTwo);
+//            }
+//        });
 
         mAnswerOneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,11 +189,16 @@ public class SurveyQuestionFragment extends Fragment {
 //
 //            EditSurveyButtonPressed isPressed = new EditSurveyButtonPressed(buttonPressed);
 
-            // Call listener's newItemCreated method to notify it that a newItem was created
+            // Call listener's editSurveyButtonPressed method to notify it that a EditSurveyButton was pressed
                 mEditSurveyButtonListener.editSurveyButtonPressed();
             }
         });
 
+//        } else {
+//            Log.w(TAG, "Did not receive a ToDoItem");
+//        }
+
         return view;
     }
+
 }

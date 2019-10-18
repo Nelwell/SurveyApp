@@ -45,29 +45,29 @@ public class ConfigureSurveyFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static ConfigureSurveyFragment newInstance() {
+        return new ConfigureSurveyFragment();
+    }
+
 //    public static ConfigureSurveyFragment newInstance(String mQuestion, String mAnswerOne, String mAnswerTwo) {
-//        return new ConfigureSurveyFragment();
+//        ConfigureSurveyFragment fragment = new ConfigureSurveyFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_NEW_QUESTION, mQuestion);
+//        args.putString(ARG_ANSWER_ONE, mAnswerOne);
+//        args.putString(ARG_ANSWER_TWO, mAnswerTwo);
+//        fragment.setArguments(args);
+//        return fragment;
 //    }
-
-    public static ConfigureSurveyFragment newInstance(String mQuestion, String mAnswerOne, String mAnswerTwo) {
-        ConfigureSurveyFragment fragment = new ConfigureSurveyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_NEW_QUESTION, mQuestion);
-        args.putString(ARG_ANSWER_ONE, mAnswerOne);
-        args.putString(ARG_ANSWER_TWO, mAnswerTwo);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mQuestion = getArguments().getString(ARG_NEW_QUESTION);
-            mAnswerOne = getArguments().getString(ARG_ANSWER_ONE);
-            mAnswerTwo = getArguments().getString(ARG_ANSWER_TWO);
-        }
-    }
+//
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        if (getArguments() != null) {
+//            mQuestion = getArguments().getString(ARG_NEW_QUESTION);
+//            mAnswerOne = getArguments().getString(ARG_ANSWER_ONE);
+//            mAnswerTwo = getArguments().getString(ARG_ANSWER_TWO);
+//        }
+//    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -99,7 +99,7 @@ public class ConfigureSurveyFragment extends Fragment {
 
         // Get Button resource ID and EditText String resource IDs
         Button mSaveEditsButton = view.findViewById(R.id.save_edits_button);
-        final EditText newQuestion = view.findViewById(R.id.survey_question);
+        final EditText newQuestion = view.findViewById(R.id.survey_question_edit_text);
         final EditText newAnswerOne = view.findViewById(R.id.answer_one);
         final EditText newAnswerTwo = view.findViewById(R.id.answer_two);
 
@@ -114,24 +114,12 @@ public class ConfigureSurveyFragment extends Fragment {
                 mAnswerOne = newAnswerOne.getText().toString();
                 mAnswerTwo = newAnswerTwo.getText().toString();
 
-                newQuestion.getText().clear();
-                newAnswerOne.getText().clear();
-                newAnswerTwo.getText().clear();
+//                newQuestion.getText().clear();
+//                newAnswerOne.getText().clear();
+//                newAnswerTwo.getText().clear();
 
-                // Inflate the layout for this fragment
-//                view = inflater.inflate(R.layout.fragment_configure_survey, container, false);
-//                EditText newQuestionText = view.findViewById(R.id.survey_question);
-//                newQuestionText.setText(""+mQuestion);
-//
-//                EditText newAnswerOne = view.findViewById(R.id.answer_one);
-//                newAnswerOne.setText(""+mAnswerOne);
-//
-//                EditText newAnswerTwo = view.findViewById(R.id.answer_two);
-//                newAnswerTwo.setText(""+mAnswerTwo);
-
-                // Call listener's editSurvey method to notify it that a new SurveyData object was created
+                // Call listener's saveEdits method to notify it that new data has been created
                 mNewSurveyListener.saveEdits(mQuestion, mAnswerOne, mAnswerTwo);
-//                mNewSurveyListener.newSurvey(mQuestion, mAnswerOne, mAnswerTwo);
             }
         });
 

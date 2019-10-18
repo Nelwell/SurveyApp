@@ -8,16 +8,17 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity implements
         SurveyQuestionFragment.ResultsListener,
         SurveyQuestionFragment.EditSurveyButtonListener,
-        SurveyQuestionFragment.SetEditsListener,
+//        SurveyQuestionFragment.SetEditsListener,
         ResultsFragment.ResetResultsListener,
         ResultsFragment.ResetSurveyListener,
         ConfigureSurveyFragment.NewSurveyListener {
 
     private static final String TAG_CONFIG_FRAG = "CONFIG FRAGMENT";
+    private static final String TAG_RESULTS_FRAG = "RESULTS FRAGMENT";
 
     private SurveyQuestionFragment mSurveyQuestionFragment;
     private ResultsFragment mResultsFragment;
-    private ConfigureSurveyFragment mConfigureSurveyFragment;
+//    private ConfigureSurveyFragment mConfigureSurveyFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements
         // Create three fragments
         mSurveyQuestionFragment = new SurveyQuestionFragment();
         mResultsFragment = new ResultsFragment();
-        mConfigureSurveyFragment = new ConfigureSurveyFragment();
+//        mConfigureSurveyFragment = new ConfigureSurveyFragment();
 
         // Show two of the fragments
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -53,6 +54,17 @@ public class MainActivity extends AppCompatActivity implements
 //        ft.addToBackStack("RESULT");
         ft.commit();
         // Launch ResultsFragment
+    }
+
+    @Override
+    public void saveEdits(String mQuestion, String mAnswerOne, String mAnswerTwo) {
+
+        // Make brand new survey Fragment Activity by replacing existing activity
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        mSurveyQuestionFragment = SurveyQuestionFragment.newInstance(mQuestion, mAnswerOne, mAnswerTwo);
+        ft.replace(R.id.survey_question_fragment_container, mSurveyQuestionFragment);
+
+        ft.commit();
     }
 
     @Override
@@ -81,27 +93,16 @@ public class MainActivity extends AppCompatActivity implements
         ft.commit();
     }
 
-    @Override
-    public void saveEdits(String mQuestion, String mAnswerOne, String mAnswerTwo) {
-
-        // Make brand new survey Fragment Activity by replacing existing activity
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        mSurveyQuestionFragment = SurveyQuestionFragment.newInstance(mQuestion, mAnswerOne, mAnswerTwo);
-        ft.replace(R.id.survey_question_fragment_container, mSurveyQuestionFragment);
-
-        ft.commit();
-    }
-
-    @Override
-    public void setEditsButtonPressed(String mQuestion, String mAnswerOne, String mAnswerTwo) {
-
-        // Make brand new survey Fragment Activity by replacing existing activity
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        mSurveyQuestionFragment = SurveyQuestionFragment.newInstance(mQuestion, mAnswerOne, mAnswerTwo);
-        ft.replace(R.id.survey_question_fragment_container, mSurveyQuestionFragment);
-
-        ft.commit();
-    }
+//    @Override
+//    public void setEditsButtonPressed(String mQuestion, String mAnswerOne, String mAnswerTwo) {
+//
+//        // Make brand new survey Fragment Activity by replacing existing activity
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        mSurveyQuestionFragment = SurveyQuestionFragment.newInstance(mQuestion, mAnswerOne, mAnswerTwo);
+//        ft.replace(R.id.survey_question_fragment_container, mSurveyQuestionFragment);
+//
+//        ft.commit();
+//    }
 
     // Opens ConfigureSurveyFragment
     public void editSurveyButtonPressed() {
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
         // Create new ToDoItemDetailFragment with the selected ToDoItem
-        mConfigureSurveyFragment = new ConfigureSurveyFragment();
+        ConfigureSurveyFragment mConfigureSurveyFragment = new ConfigureSurveyFragment();
         ft.replace(R.id.results_fragment_container, mConfigureSurveyFragment);
 
         ft.addToBackStack(TAG_CONFIG_FRAG);
