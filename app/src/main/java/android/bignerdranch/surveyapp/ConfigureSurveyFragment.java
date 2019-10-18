@@ -82,7 +82,6 @@ public class ConfigureSurveyFragment extends Fragment {
                 // Call listener's saveEdits method to notify it that new data has been created
                 mNewSurveyListener.saveEdits(mQuestion, mAnswerOne, mAnswerTwo);
 
-
                 // Clear fields
                 newQuestion.getText().clear();
                 newAnswerOne.getText().clear();

@@ -111,18 +111,18 @@ public class SurveyQuestionFragment extends Fragment {
         mAnswerOneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("SURVEY", "First answer " + mAnswerOneCount);
-                mAnswerOneCount++; // Adds one vote per click
-                mResultsListener.surveyResults(mAnswerOneCount, mAnswerTwoCount);
+            Log.d("SURVEY", "First answer " + mAnswerOneCount);
+            mAnswerOneCount++; // Adds one vote per click
+            mResultsListener.surveyResults(mAnswerOneCount, mAnswerTwoCount);
             }
         });
 
         mAnswerTwoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("SURVEY", "Second answer " + mAnswerTwoCount);
-                mAnswerTwoCount++; // Adds one vote per click
-                mResultsListener.surveyResults(mAnswerOneCount, mAnswerTwoCount);
+            Log.d("SURVEY", "Second answer " + mAnswerTwoCount);
+            mAnswerTwoCount++; // Adds one vote per click
+            mResultsListener.surveyResults(mAnswerOneCount, mAnswerTwoCount);
             }
         });
 
@@ -131,7 +131,7 @@ public class SurveyQuestionFragment extends Fragment {
             public void onClick(View view) {
 
             // Call listener's editSurveyButtonPressed method to notify it that a EditSurveyButton was pressed
-                mEditSurveyButtonListener.editSurveyButtonPressed();
+            mEditSurveyButtonListener.editSurveyButtonPressed();
             }
         });
 

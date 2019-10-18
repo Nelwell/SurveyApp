@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import static android.content.ContentValues.TAG;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -38,11 +37,11 @@ public class ResultsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ResultsFragment newInstance(int mAnswerOneCount, int mAnswerTwoCount) {
+    public static ResultsFragment newInstance(int answerOneCount, int answerTwoCount) {
         ResultsFragment fragment = new ResultsFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_ANSWER_ONE_COUNT, mAnswerOneCount);
-        args.putInt(ARG_ANSWER_TWO_COUNT, mAnswerTwoCount);
+        args.putInt(ARG_ANSWER_ONE_COUNT, answerOneCount);
+        args.putInt(ARG_ANSWER_TWO_COUNT, answerTwoCount);
         fragment.setArguments(args);
         return fragment;
     }

@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void surveyResults(int mAnswerOneCount, int mAnswerTwoCount) {
+    public void surveyResults(int answerOneCount, int answerTwoCount) {
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        mResultsFragment = ResultsFragment.newInstance(mAnswerOneCount, mAnswerTwoCount);
+        mResultsFragment = ResultsFragment.newInstance(answerOneCount, answerTwoCount);
         ft.replace(R.id.results_fragment_container, mResultsFragment);
         ft.commit();
         // Launch ResultsFragment
