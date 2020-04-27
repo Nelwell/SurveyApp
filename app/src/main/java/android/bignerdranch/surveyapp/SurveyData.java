@@ -55,7 +55,6 @@ public class SurveyData implements Parcelable{
 
     // Code required by the Parcelable interface.
     // If ToDoItem is parcelable, can send as an Extra between Fragments/Activities
-
     static final Parcelable.Creator<SurveyData> CREATOR = new Parcelable.Creator<SurveyData>() {
         public SurveyData createFromParcel(Parcel in) {
             return new SurveyData(in);

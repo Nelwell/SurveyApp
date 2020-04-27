@@ -47,8 +47,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         mResultsFragment = ResultsFragment.newInstance(answerOneCount, answerTwoCount);
         ft.replace(R.id.results_fragment_container, mResultsFragment);
-        ft.commit();
-        // Launch ResultsFragment
+        ft.commit(); // Launch ResultsFragment
     }
 
     @Override

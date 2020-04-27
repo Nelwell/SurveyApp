@@ -84,7 +84,7 @@ public class SurveyQuestionFragment extends Fragment {
         if (context instanceof EditSurveyButtonListener){  // Context is the hosting Activity.
             mEditSurveyButtonListener = (EditSurveyButtonListener) context;
             Log.d(TAG, "Listener set");
-        } else  {
+        } else {
             throw new RuntimeException(context.toString() + " must implement EditSurveyButtonListener");
         }
     }
@@ -92,17 +92,14 @@ public class SurveyQuestionFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_survey_question, container, false);
 
         final TextView mSurveyQuestion = view.findViewById(R.id.survey_question);
         mSurveyQuestion.setText(mQuestion);
-
         // Get button IDs and TextView String resource ID
         final Button mAnswerOneButton = view.findViewById(R.id.answer_one_button);
         mAnswerOneButton.setText(mAnswerOne);
-
         final Button mAnswerTwoButton = view.findViewById(R.id.answer_two_button);
         mAnswerTwoButton.setText(mAnswerTwo);
 

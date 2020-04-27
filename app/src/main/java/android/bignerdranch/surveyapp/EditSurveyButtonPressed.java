@@ -34,7 +34,6 @@ public class EditSurveyButtonPressed implements Parcelable{
 
     // Code required by the Parcelable interface.
     // If ToDoItem is parcelable, can send as an Extra between Fragments/Activities
-
     static final Parcelable.Creator<EditSurveyButtonPressed> CREATOR = new Parcelable.Creator<EditSurveyButtonPressed>() {
         public EditSurveyButtonPressed createFromParcel(Parcel in) {
             return new EditSurveyButtonPressed(in);
